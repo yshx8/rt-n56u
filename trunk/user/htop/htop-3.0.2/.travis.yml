@@ -1,0 +1,12 @@
+language: c
+
+compiler:
+  - clang
+  - gcc
+
+os:
+  - freebsd
+  - linux
+  - osx
+
+script: ./autogen.sh && ./configure && make
