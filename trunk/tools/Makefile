@@ -1,5 +1,5 @@
 THISDIR = $(shell pwd)
-go_version = 1.15.2
+go_version = 1.17.1
 # use host target
 CC        = gcc
 GCC       = gcc
@@ -29,15 +29,15 @@ all:go_build
 ifeq ($(CONFIG_RT2880_ROOTFS_IN_FLASH),y)
 	make -C mksquashfs_xz
 endif
-
 go_build:
 	mkdir -p $(THISDIR)/go
 	( if [ ! -f $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ]; then \
-	curl --create-dirs -L https://gomirrors.org/dl/go/go$(go_version).linux-amd64.tar.gz -o $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ; \
+	curl --create-dirs -L https://dl.google.com/go/go$(go_version).linux-amd64.tar.gz -o $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ; \
 	fi )
 	( if [ ! -d $(THISDIR)/go/go ]; then \
 	tar zxfv $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz -C go ; \
 	fi )
+
 
 clean:
 	if [ -f $(SSTRIP_NAME)/Makefile ] ; then \
